@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Edytuj "{{ post['content']|truncate(32) }}" {% endblock %}</h1>
+
+<form method="post">
+    <div class="input-group">
+        <textarea name="content" placeholder="Post content"
+                  class="form-control" onInput="LiczZnaki(this, 128)"
+                      maxlength="128">{{ request.form['content'] or post['content'] }}</textarea>
+                                <div class="input-group-prepend">
+                <span class="input-group-text">Limit znakow <br>do wpisania:<br> ---</span>
+            </div>
+    </div>
+    <div class="form-group d-grid gap-2 pt-2">
+        <button type="submit" class="btn btn-primary">Edytuj</button>
+    </div>
+</form>
+{% endblock %}

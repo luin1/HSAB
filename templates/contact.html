@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Kontakt {% endblock %}</h1>
+
+    <p>Autorem systemu jest AW</p>
+    <p>System został stworzony na zajęcia: Systemy Rozproszone 2023</p>
+
+    <div class="container py-5" id="icon-grid">
+        <h2 class="pb-2 border-bottom">Możliwośći systemu</h2>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+            <div class="col d-flex align-items-start">
+                <span class="bi text-body-secondary flex-shrink-0 me-3 increase-size3">🧳</span>
+                <div>
+                    <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Strona głowna</h3>
+                    <p>Wyświetla wszystkie dodane treści.</p>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <span class="bi text-body-secondary flex-shrink-0 me-3 increase-size3">💼</span>
+                <div>
+                    <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Dodaj wpis</h3>
+                    <p>Dodaje wpis. Ograniczenie co do ilości znaków (128)</p>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <span class="bi text-body-secondary flex-shrink-0 me-3 increase-size3">🎨</span>
+                <div>
+                    <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Kontakt</h3>
+                    <p>To właśnie ta strona -></p>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <span class="bi text-body-secondary flex-shrink-0 me-3 increase-size3">👍</span>
+                <div>
+                    <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Fajne</h3>
+                    <p>Możliwość zagłosowania na podany tekst. Dodanie +1</p>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <span class="bi text-body-secondary flex-shrink-0 me-3 increase-size3">🧑🏻‍</span>
+                <div>
+                    <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Sortowanie</h3>
+                    <p>Możliwość sortowania wpisów wg. daty, poziomu fajności.</p>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <span class="bi text-body-secondary flex-shrink-0 me-3 increase-size3">‍✈️</span>
+                <div>
+                    <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Administracja</h3>
+                    <p>Możliwość edytowania, usuwania wpisów oraz resetowania poziomu fajności.</p>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <span class="bi text-body-secondary flex-shrink-0 me-3 increase-size3">🗣</span>
+                <div>
+                    <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Logowanie</h3>
+                    <p>Możliwość zalogowania się jako administrator w celu uaktywnienia dodatkowych opcji.</p>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <span class="bi text-body-secondary flex-shrink-0 me-3 increase-size3">👎</span>
+                <div>
+                    <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Słabe</h3>
+                    <p>Możliwość obniżenia rankingu fajności. -1</p>
+                </div>
+            </div>
+        </div>
+        <h2 class="pb-2 border-bottom">Raport</h2>
+
+        <div class="row g-3">
+            <div class="col-auto">
+                <img src="{{ url_for('static', filename='icon-pdf.png') }}" alt="Logo PDF">
+            </div>
+            <div class="col-auto align-self-center">
+                <input class="form-control" type="text" value="AW-Raport-HSAB.pdf" aria-label="AW-Raport-HSAB.pdf" disabled
+                       readonly>
+            </div>
+            <div class="col-auto align-self-center">
+                <a href="{{ url_for('static', filename='AW-Raport-HSAB.pdf') }}"><button type="submit" class="btn btn-primary">Pobierz</button></a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Utwórz nowy wpis {% endblock %}</h1>
+
+    <form method="post">
+        <div class="input-group">
+            <textarea name="content" placeholder="Wpisz coś ciekawego"
+                      class="form-control" onInput="LiczZnaki(this, 128)"
+                      maxlength="128">{{ request.form['content'] }}</textarea>
+                        <div class="input-group-prepend">
+                <span class="input-group-text">Limit znakow <br>do wpisania:<br> ---</span>
+            </div>
+        </div>
+        <div class="form-group  pt-2">
+            <div class="row">
+                <div class="col-auto">{{ captcha() }}</div>
+                <div class="col"><input type="text" name="captcha" class="form-control"
+                                        placeholder="Przepisz kod z obrazka"></div>
+            </div>
+
+        </div>
+        <div class="form-group d-grid gap-2 pt-2">
+            <button type="submit" class="btn btn-primary">Wyślij</button>
+        </div>
+    </form>
+{% endblock %}

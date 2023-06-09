@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row float-end py-2">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                Sortuj wpisy
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ url_for('index', sort_on='datdesc') }}">Data (Najnowsze)</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('index', sort_on='datasc') }}">Data (Najstarsze)</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('index', sort_on='cool') }}">Poziom fajności
+                    (Najlepsze)</a>
+                <li><a class="dropdown-item" href="{{ url_for('index', sort_on='notcool') }}">Poziom fajności
+                    (Najgorsze)</a></li>
+            </ul>
+        </div>
+    </div>
+    {% for post in posts %}
+        <div class="modal" tabindex="-1" style="display: contents;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p><a href="{{ url_for('post', post_id=post['id']) }}">{{ post['content'] }}</a></p>
+                </div>
+                <div class="modal-footer">
+
+                    <div class="col">
+                        <a href="{{ url_for('cool', id=post['id']) }}"><button type="button" class="btn btn-success">👍 Fajne</button></a>
+                        <button type="button" class="btn btn-primary">🤟 Poziom fajności <span class="badge text-bg-secondary">{{ post['vote'] }} </span> 🤙</button>
+                        <a href="{{ url_for('notcool', id=post['id']) }}"><button type="button" class="btn btn-danger">👎 Słabe</button></a>
+                    </div>
+                    <div class="col-auto">
+                        <span class="badge text-bg-light increase-size">{{ post['created'] }}</span>
+                    </div>
+                    {% if current_user.is_authenticated %}
+                        <div class="col-auto">
+                            <a class="btn btn-warning" href="{{ url_for('edit', id=post['id']) }}"
+                               role="button">Edytuj</a>
+                        </div>
+                        <div class="col-auto">
+                        <form action="{{ url_for('delete', id=post['id']) }}" method="POST">
+                            <input type="submit" value="Usuń"
+                                   class="btn btn-danger"
+                                   onclick="return confirm('Czy na pewno chcesz usunąć ten wpis?')">
+                        </form>
+                        </div>
+                        <div class="col-auto">
+                            <form action="{{ url_for('resetcool', id=post['id']) }}" method="POST">
+                                <input type="submit" value="Resetuj PF"
+                                       class="btn btn-primary"
+                                       onclick="return confirm('Czy na pewno chcesz zresetować poziom fajności?')">
+                            </form>
+                        </div>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

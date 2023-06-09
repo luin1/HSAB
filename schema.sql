@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS posts;
+
+CREATE TABLE posts
+(
+    id      INTEGER PRIMARY KEY AUTOINCREMENT,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    content TEXT      NOT NULL,
+    vote    INTEGER   NOT NULL DEFAULT '0'
+);
+
+DROP TABLE IF EXISTS login;
+
+create table login
+(
+    id  INTEGER PRIMARY KEY AUTOINCREMENT,
+    username    TEXT NOT NULL,
+    password TEXT NOT NULL,
+    access INTEGER   NOT NULL DEFAULT '0'
+);
